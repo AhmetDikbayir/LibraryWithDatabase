@@ -10,18 +10,11 @@ public class Library {
 
     Statement st = con.createStatement();
 
+
     public Library() throws SQLException {
     }
 
-    public static void main(String[] args) throws SQLException {
 
-        Library library1 = new Library();
-        //library1.createUser();
-        library1.deleteUser();
-
-
-
-    }
 
     public void createUser() throws SQLException {
 
@@ -58,6 +51,7 @@ public class Library {
         prst2.setString(1,name);
         prst2.setString(2,lastName);
         prst2.executeUpdate();
+        st.close();
+        con.close();
     }
-
 }
