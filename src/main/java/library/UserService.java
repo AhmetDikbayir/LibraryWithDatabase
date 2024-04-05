@@ -28,11 +28,13 @@ public class UserService {
 
         String sql = "INSERT INTO users VALUES(?,?,?,?)";
         PreparedStatement prst1 = con.prepareStatement(sql);
-        prst1.setString(1,name);
-        prst1.setString(2,lastName);
-        prst1.setString(3, email);
+        prst1.setString(1,user.getName().toLowerCase());
+        prst1.setString(2,lastName.toLowerCase());
+        prst1.setString(3, email.toLowerCase());
         prst1.setString(4,user_tel);
         prst1.executeUpdate();
+        prst1.close();
+
 
         return user;
     }
@@ -44,9 +46,11 @@ public class UserService {
         String lastName = scan.nextLine();
         String delSql = "DELETE FROM users WHERE userName = ? AND userLastname = ?";
         PreparedStatement prst2 = con.prepareStatement(delSql);
-        prst2.setString(1,name);
-        prst2.setString(2,lastName);
+        prst2.setString(1,name.toLowerCase());
+        prst2.setString(2,lastName.toLowerCase());
         prst2.executeUpdate();
+        prst2.close();
+
 
     }
 
@@ -58,9 +62,11 @@ public class UserService {
             System.out.println(" User Name : " + rs.getString("username") +
                     "\n User Lastname : " + rs.getString("userlastname") +
                     "\n User E-mail : " + rs.getString("useremail") +
-                    "\n User Phone Number : " + rs.getString("usertel"));
+                    "\n User Phone Number : " + rs.getString("usertel")+
+                    "\n-----------------------------------");
 
         }
+        st.close();
 
     }
 
