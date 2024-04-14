@@ -3,23 +3,17 @@ package library;
 import java.util.ArrayList;
 
 public class User {
+
+    private int id;
     private String name;
     private String lastName;
     private String email;
     private String user_tel;
     private ArrayList<Book> bookList;
 
-    public User() {
-    }
 
-    public User(String name, String lastName, String email, String user_tel) {
-        this.name = name;
-        this.lastName = lastName;
-        this.email = email;
-        this.user_tel = user_tel;
-    }
-
-    public User(String name, String lastName, String email, String user_tel, ArrayList<Book> bookList) {
+    public User(int id, String name, String lastName, String email, String user_tel, ArrayList<Book> bookList) {
+        this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.email = email;

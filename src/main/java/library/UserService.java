@@ -13,8 +13,8 @@ public class UserService {
     public UserService() throws SQLException {
     }
 
-    public User createUser() throws SQLException {
-        ArrayList<Book> bookListNull = new ArrayList<>();
+    public void createUser() throws SQLException {
+
         System.out.println("Please enter the member name : ");
         String name = scan.nextLine();
         System.out.println("Please enter the member lastname : ");
@@ -24,19 +24,17 @@ public class UserService {
         System.out.println("Please enter the member's phone number : ");
         String user_tel = scan.nextLine();
         System.out.println("User successfully added!!");
-        User user = new User(name, lastName, email, user_tel, bookListNull);
+
 
         String sql = "INSERT INTO users VALUES(?,?,?,?)";
         PreparedStatement prst1 = con.prepareStatement(sql);
-        prst1.setString(1,user.getName().toLowerCase());
+        prst1.setString(1,name.toLowerCase());
         prst1.setString(2,lastName.toLowerCase());
         prst1.setString(3, email.toLowerCase());
         prst1.setString(4,user_tel);
         prst1.executeUpdate();
         prst1.close();
 
-
-        return user;
     }
 
     public void deleteUser() throws SQLException {
@@ -50,8 +48,6 @@ public class UserService {
         prst2.setString(2,lastName.toLowerCase());
         prst2.executeUpdate();
         prst2.close();
-
-
     }
 
     public void listUser() throws SQLException {
@@ -64,9 +60,10 @@ public class UserService {
                     "\n User E-mail : " + rs.getString("useremail") +
                     "\n User Phone Number : " + rs.getString("usertel")+
                     "\n-----------------------------------");
-
         }
-        st.close();
+    }
+
+    public void borrowBook(){
 
     }
 

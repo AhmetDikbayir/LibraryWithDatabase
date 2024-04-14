@@ -22,14 +22,23 @@ public class LibraryService {
             Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/library", "techprodt", "password");
             Statement st = con.createStatement();
             String bookTableSQL = "CREATE TABLE IF NOT EXISTS books(" +
-                    "bookId INTEGER," +
+                    "bookId INTEGER PRIMARY KEY," +
                     "bookName VARCHAR(50)," +
                     "author VARCHAR(50)," +
                     "publisher VARCHAR(30)," +
                     "year INTEGER," +
                     "pageNumber INTEGER," +
-                    "genres VARCHAR(20));";
+                    "genres VARCHAR(20))";
             st.execute(bookTableSQL);
+
+            String userTableSQL = "CREATE TABLE IF NOT EXISTS users(" +
+                    "userId SERIAL PRIMARY KEY," +
+                    "userName VARCHAR(20)," +
+                    "userLastname VARCHAR(20)," +
+                    "userEmail VARCHAR(50)," +
+                    "userTel VARCHAR(13))";
+            //st.executeQuery(userTableSQL);
+
 
             System.out.println("Welcome Ancient Magnificient Library");
             System.out.println("Select what do you want to do?\n" +
@@ -42,7 +51,6 @@ public class LibraryService {
                     "7 ==> Get Back Book from User\n" +
                     "0 ==> EXIT");
             select = scan.nextInt();
-            //System.out.println();
             switch (select){
                 case 1:
                     userService.listUser();
